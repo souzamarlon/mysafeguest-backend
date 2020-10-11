@@ -5,6 +5,13 @@
   "repository": "https://github.com/souzamarlon/mysafeguest-backend.git",
   "author": "Marlon Souza <42625569+souzamarlon@users.noreply.github.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "queue": "nodemon src/queue.js",
+    "build": "sucrase ./src -d ./dist --transforms imports",
+    "start": "node dist/server.js",
+    "queueProd": "node dist/queue.js"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
