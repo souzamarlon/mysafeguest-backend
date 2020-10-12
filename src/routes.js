@@ -12,5 +12,8 @@ routes.post('/sessions', SessionController.store);
 routes.use(authMiddleware);
 
 routes.post('/residents', ResidentController.store);
+routes.get('/residents/:id', ResidentController.index);
+routes.put('/residents/:id', ResidentController.update);
+routes.delete('/residents/:id', ResidentController.delete);
 
 export default routes;
