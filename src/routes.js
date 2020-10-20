@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 import SessionController from './app/controllers/SessionController';
+import UserController from './app/controllers/UserController';
 import authMiddleware from './app/middlewares/auth';
 
 import ResidentController from './app/controllers/ResidentController';
@@ -11,6 +12,8 @@ routes.post('/sessions', SessionController.store);
 
 // Admin features:
 routes.use(authMiddleware);
+
+routes.get('/users', UserController.index);
 
 routes.get('/residents/:id', ResidentController.index);
 routes.post('/residents', ResidentController.store);
