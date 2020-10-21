@@ -7,6 +7,7 @@ class ResidentController {
     const { id } = req.params;
 
     const allResidents = await Resident.findAll({
+      order: [['id', 'DESC']],
       where: {
         owner_id: id,
       },
