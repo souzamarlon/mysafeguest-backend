@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import { promisify } from 'util';
 
 import User from '../models/User';
+import Resident from '../models/Resident';
 
 import authConfig from '../../config/auth';
 
@@ -19,12 +20,11 @@ export default async (req, res, next) => {
 
     // exp is a time in Unix
     req.userId = decoded.id;
+    req.admin = decoded.admin;
 
-    const { banned } = await User.findByPk(req.userId);
-
-    if (banned) {
-      return res.status(401).json({ error: 'User was banned!' });
-    }
+    // if (banned) {
+    //   return res.status(401).json({ error: 'User was banned!' });
+    // }
 
     return next();
   } catch (err) {
