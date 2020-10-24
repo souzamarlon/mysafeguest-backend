@@ -36,11 +36,7 @@ routes.delete(
   ResidentController.delete
 );
 
-routes.get(
-  '/appointments/:id',
-  adminAuthorization(false),
-  AppointmentController.index
-);
+routes.get('/appointments/:id', AppointmentController.index);
 routes.post(
   '/appointments',
   adminAuthorization(false),
