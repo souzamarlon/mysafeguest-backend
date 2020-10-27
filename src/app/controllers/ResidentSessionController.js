@@ -30,6 +30,7 @@ class ResidentSessionController {
         id,
         name,
         email,
+        admin: false,
       },
       token: jwt.sign({ id, admin: false }, authConfig.secret, {
         expiresIn: authConfig.expiresIn,

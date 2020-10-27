@@ -30,6 +30,7 @@ class AdminSessionController {
         id,
         name,
         email,
+        admin: true,
       },
       token: jwt.sign({ id, admin: true }, authConfig.secret, {
         expiresIn: authConfig.expiresIn,
