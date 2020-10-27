@@ -20,7 +20,7 @@ export default async (req, res, next) => {
 
     // exp is a time in Unix
     req.userId = decoded.id;
-    req.admin = decoded.admin;
+    req.isAdmin = decoded.isAdmin;
 
     // if (banned) {
     //   return res.status(401).json({ error: 'User was banned!' });

@@ -1,9 +1,9 @@
 export default function adminAuthorization(adminAccess) {
   return (req, res, next) => {
-    const { admin } = req;
+    const { isAdmin } = req;
 
     try {
-      if (admin === adminAccess) {
+      if (isAdmin === adminAccess) {
         return next(); // access is allowed, so continue on the next middleware
       }
       return res.status(403).json({ message: 'Forbidden' }); // user is forbidden

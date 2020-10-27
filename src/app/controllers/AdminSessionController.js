@@ -30,9 +30,9 @@ class AdminSessionController {
         id,
         name,
         email,
-        admin: true,
+        isAdmin: true,
       },
-      token: jwt.sign({ id, admin: true }, authConfig.secret, {
+      token: jwt.sign({ id, isAdmin: true }, authConfig.secret, {
         expiresIn: authConfig.expiresIn,
       }),
     });
