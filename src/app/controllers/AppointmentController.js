@@ -6,7 +6,7 @@ class AppointmentController {
     const { id } = req.params;
 
     const appointments = await Appointment.findAll({
-      order: [['id', 'DESC']],
+      order: [['end_date', 'DESC']],
       where: {
         resident_id: id,
       },
