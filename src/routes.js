@@ -10,9 +10,13 @@ import adminAuthorization from './app/middlewares/authorization';
 import ResidentController from './app/controllers/ResidentController';
 import AppointmentController from './app/controllers/AppointmentController';
 
+import GuardController from './app/controllers/GuardController';
+
 const routes = new Router();
+
 routes.post('/sessions', AdminSessionController.store);
 routes.post('/residentsessions', ResidentSessionController.store);
+routes.get('/guardcheckin/:id', GuardController.index);
 
 // Admin features:
 routes.use(authMiddleware);
