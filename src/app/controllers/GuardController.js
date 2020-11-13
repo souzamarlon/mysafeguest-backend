@@ -5,7 +5,7 @@ class GuardController {
   async index(req, res) {
     const { id } = req.params;
 
-    const appointments = await Appointment.findAll({
+    const appointments = await Appointment.findOne({
       where: {
         id,
       },
