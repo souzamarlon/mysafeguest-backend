@@ -1,4 +1,4 @@
-import { isBefore, isAfter } from 'date-fns';
+import { isBefore, isToday, isPast } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
 import Appointment from '../models/Appointment';
 import Resident from '../models/Resident';
@@ -33,13 +33,16 @@ class GuardController {
       });
     }
 
-    if (isBefore(dateTimeUTCMexico, appointments.start_date)) {
+    if (
+      isBefore(dateTimeUTCMexico, appointments.start_date) &&
+      !isToday(appointments.start_date)
+    ) {
       return res.status(403).json({
         error: 'The current date is earlier than the appointment.',
       });
     }
 
-    if (isAfter(dateTimeUTCMexico, appointments.end_date)) {
+    if (isPast(appointments.end_date) && !isToday(appointments.end_date)) {
       return res.status(403).json({
         error: 'This appointment has passed!',
       });
