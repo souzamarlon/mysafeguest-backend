@@ -35,13 +35,13 @@ class GuardController {
 
     if (isBefore(dateTimeUTCMexico, appointments.start_date)) {
       return res.status(403).json({
-        error: 'The current date is earlier than the scheduled date.',
+        error: 'The current date is earlier than the appointment.',
       });
     }
 
     if (isAfter(dateTimeUTCMexico, appointments.end_date)) {
       return res.status(403).json({
-        error: 'The scheduled date is before the current date.',
+        error: 'This appointment has passed!',
       });
     }
 
