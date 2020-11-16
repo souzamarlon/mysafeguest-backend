@@ -28,19 +28,19 @@ class GuardController {
     });
 
     if (!appointments) {
-      return res.status(401).json({
+      return res.status(404).json({
         error: 'There is no schedule.',
       });
     }
 
     if (isBefore(dateTimeUTCMexico, appointments.start_date)) {
-      return res.status(401).json({
+      return res.status(403).json({
         error: 'The current date is earlier than the scheduled date.',
       });
     }
 
     if (isAfter(dateTimeUTCMexico, appointments.end_date)) {
-      return res.status(401).json({
+      return res.status(403).json({
         error: 'The scheduled date is before the current date.',
       });
     }
