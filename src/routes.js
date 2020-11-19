@@ -13,6 +13,7 @@ import AppointmentController from './app/controllers/AppointmentController';
 import GuardController from './app/controllers/GuardController';
 
 import validateResidentStore from './app/validators/ResidentStore';
+import validateResidentUpdate from './app/validators/ResidentUpdate';
 
 const routes = new Router();
 
@@ -30,17 +31,21 @@ routes.get(
   adminAuthorization(true),
   ResidentController.index
 );
+
 routes.post(
   '/residents',
   adminAuthorization(true),
   validateResidentStore,
   ResidentController.store
 );
+
 routes.put(
   '/residents/:id',
   adminAuthorization(true),
+  validateResidentUpdate,
   ResidentController.update
 );
+
 routes.delete(
   '/residents/:id',
   adminAuthorization(true),
@@ -48,16 +53,19 @@ routes.delete(
 );
 
 routes.get('/appointments/:id', AppointmentController.index);
+
 routes.post(
   '/appointments',
   adminAuthorization(false),
   AppointmentController.store
 );
+
 routes.put(
   '/appointments/:id',
   adminAuthorization(false),
   AppointmentController.update
 );
+
 routes.delete(
   '/appointments/:id',
   adminAuthorization(false),
