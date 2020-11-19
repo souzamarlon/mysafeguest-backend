@@ -17,6 +17,22 @@ class ResidentController {
   }
 
   async store(req, res) {
+    const emailExists = await Resident.findOne({
+      where: { email: req.body.email },
+    });
+
+    const mobileExists = await Resident.findOne({
+      where: { mobile: req.body.mobile },
+    });
+
+    if (emailExists) {
+      return res.status(400).json({ error: 'Email already exists!' });
+    }
+
+    if (mobileExists) {
+      return res.status(400).json({ error: 'Mobile already exists!' });
+    }
+
     const {
       id,
       name,
