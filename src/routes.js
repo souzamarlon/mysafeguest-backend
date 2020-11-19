@@ -12,6 +12,8 @@ import AppointmentController from './app/controllers/AppointmentController';
 
 import GuardController from './app/controllers/GuardController';
 
+import validateResidentStore from './app/validators/ResidentStore';
+
 const routes = new Router();
 
 routes.post('/sessions', AdminSessionController.store);
@@ -28,7 +30,12 @@ routes.get(
   adminAuthorization(true),
   ResidentController.index
 );
-routes.post('/residents', adminAuthorization(true), ResidentController.store);
+routes.post(
+  '/residents',
+  adminAuthorization(true),
+  validateResidentStore,
+  ResidentController.store
+);
 routes.put(
   '/residents/:id',
   adminAuthorization(true),
