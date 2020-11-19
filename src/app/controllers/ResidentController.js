@@ -63,23 +63,27 @@ class ResidentController {
   async update(req, res) {
     const { id } = req.params;
 
-    const emailExists = await Resident.findOne({
-      where: { email: req.body.email },
-    });
-
-    const mobileExists = await Resident.findOne({
-      where: { mobile: req.body.mobile },
-    });
-
-    if (emailExists) {
-      return res.status(400).json({ error: 'Email already exists!' });
-    }
-
-    if (mobileExists) {
-      return res.status(400).json({ error: 'Mobile already exists!' });
-    }
-
     const resident = await Resident.findByPk(id);
+
+    if (resident.email !== req.body.email) {
+      const emailExists = await Resident.findOne({
+        where: { email: req.body.email },
+      });
+
+      if (emailExists) {
+        return res.status(400).json({ error: 'Email already exists!' });
+      }
+    }
+
+    if (resident.mobile !== req.body.mobile) {
+      const mobileExists = await Resident.findOne({
+        where: { mobile: req.body.mobile },
+      });
+
+      if (mobileExists) {
+        return res.status(400).json({ error: 'Mobile already exists!' });
+      }
+    }
 
     const residentUpdated = await resident.update(req.body);
 
