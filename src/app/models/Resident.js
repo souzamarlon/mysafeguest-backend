@@ -12,6 +12,7 @@ class Resident extends Model {
         number: Sequelize.INTEGER,
         city: Sequelize.STRING,
         state: Sequelize.STRING,
+        postal_code: Sequelize.STRING,
         password: Sequelize.VIRTUAL,
         password_hash: Sequelize.STRING,
       },

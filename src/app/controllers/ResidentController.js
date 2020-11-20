@@ -11,6 +11,16 @@ class ResidentController {
       where: {
         owner_id: id,
       },
+      attributes: [
+        'name',
+        'email',
+        'mobile',
+        'street',
+        'number',
+        'city',
+        'state',
+        'postal_code',
+      ],
     });
 
     return res.json(allResidents);
@@ -43,7 +53,7 @@ class ResidentController {
       number,
       city,
       state,
-      password_hash,
+      postal_code,
     } = await Resident.create(req.body);
 
     return res.json({
@@ -56,7 +66,7 @@ class ResidentController {
       number,
       city,
       state,
-      password_hash,
+      postal_code,
     });
   }
 
