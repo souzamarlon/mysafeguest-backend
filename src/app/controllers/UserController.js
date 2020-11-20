@@ -2,9 +2,6 @@ import User from '../models/User';
 
 class UserController {
   async index(req, res) {
-    const { admin } = req;
-    console.log('admin', admin);
-
     const owner = await User.findAll({
       attributes: ['id', 'name'],
     });

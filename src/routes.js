@@ -15,10 +15,19 @@ import GuardController from './app/controllers/GuardController';
 import validateResidentStore from './app/validators/ResidentStore';
 import validateResidentUpdate from './app/validators/ResidentUpdate';
 
+import validateAppointmentStore from './app/validators/AppointmentStore';
+import validateAppointmentUpdate from './app/validators/AppointmentUpdate';
+
+import validateSessionStore from './app/validators/SessionStore';
+
 const routes = new Router();
 
-routes.post('/sessions', AdminSessionController.store);
-routes.post('/residentsessions', ResidentSessionController.store);
+routes.post('/sessions', validateSessionStore, AdminSessionController.store);
+routes.post(
+  '/residentsessions',
+  validateSessionStore,
+  ResidentSessionController.store
+);
 routes.get('/guardcheckin/:id', GuardController.index);
 
 // Admin features:
@@ -57,12 +66,14 @@ routes.get('/appointments/:id', AppointmentController.index);
 routes.post(
   '/appointments',
   adminAuthorization(false),
+  validateAppointmentStore,
   AppointmentController.store
 );
 
 routes.put(
   '/appointments/:id',
   adminAuthorization(false),
+  validateAppointmentUpdate,
   AppointmentController.update
 );
 
