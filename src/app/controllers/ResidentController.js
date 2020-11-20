@@ -12,6 +12,7 @@ class ResidentController {
         owner_id: id,
       },
       attributes: [
+        'id',
         'name',
         'email',
         'mobile',
