@@ -22,7 +22,15 @@ class GuardController {
       include: [
         {
           model: Resident,
-          attributes: ['name', 'mobile', 'street', 'number', 'city', 'state'],
+          attributes: [
+            'name',
+            'mobile',
+            'street',
+            'number',
+            'city',
+            'state',
+            'postal_code',
+          ],
         },
       ],
     });
