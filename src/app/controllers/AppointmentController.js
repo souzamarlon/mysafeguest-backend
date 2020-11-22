@@ -26,13 +26,19 @@ class AppointmentController {
   async store(req, res) {
     const actualDate = new Date();
 
-    if (isPast(parseISO(req.body.start_date), actualDate)) {
+    if (
+      isPast(parseISO(req.body.start_date), actualDate) &&
+      !isToday(parseISO(req.body.start_date))
+    ) {
       return res.status(403).json({
         error: 'This date has passed!',
       });
     }
 
-    if (isBefore(parseISO(req.body.end_date), parseISO(req.body.start_date))) {
+    if (
+      isBefore(parseISO(req.body.end_date), parseISO(req.body.start_date)) &&
+      !isToday(parseISO(req.body.end_date))
+    ) {
       return res.status(403).json({
         error: 'The end date is before the start date!',
       });
