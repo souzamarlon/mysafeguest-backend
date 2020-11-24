@@ -2,6 +2,7 @@ import { isBefore, isToday, isPast, parseISO } from 'date-fns';
 
 import Appointment from '../models/Appointment';
 import Resident from '../models/Resident';
+import Address from '../models/Address';
 
 class AppointmentController {
   async index(req, res) {
@@ -15,7 +16,20 @@ class AppointmentController {
       include: [
         {
           model: Resident,
-          attributes: ['name', 'mobile', 'street', 'number', 'city', 'state'],
+          attributes: ['id', 'name', 'email', 'mobile', 'address_id', 'number'],
+          include: [
+            {
+              model: Address,
+              attributes: [
+                'id',
+                'street',
+                'number',
+                'postal_code',
+                'city',
+                'state',
+              ],
+            },
+          ],
         },
       ],
     });
