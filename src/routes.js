@@ -9,6 +9,7 @@ import adminAuthorization from './app/middlewares/authorization';
 
 import ResidentController from './app/controllers/ResidentController';
 import AppointmentController from './app/controllers/AppointmentController';
+import AddressController from './app/controllers/AddressController';
 
 import GuardController from './app/controllers/GuardController';
 
@@ -60,6 +61,9 @@ routes.delete(
   adminAuthorization(true),
   ResidentController.delete
 );
+
+routes.get('/addresses/:id', adminAuthorization(true), AddressController.index);
+routes.post('/addresses', adminAuthorization(true), AddressController.store);
 
 routes.get('/appointments/:id', AppointmentController.index);
 
