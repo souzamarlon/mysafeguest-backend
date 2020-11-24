@@ -1,6 +1,7 @@
 // import * as Yup from 'yup';
 
 import Resident from '../models/Resident';
+import Address from '../models/Address';
 
 class ResidentController {
   async index(req, res) {
@@ -11,16 +12,19 @@ class ResidentController {
       where: {
         owner_id: id,
       },
-      attributes: [
-        'id',
-        'name',
-        'email',
-        'mobile',
-        'street',
-        'number',
-        'city',
-        'state',
-        'postal_code',
+      attributes: ['id', 'name', 'email', 'mobile', 'address_id', 'number'],
+      include: [
+        {
+          model: Address,
+          attributes: [
+            'id',
+            'street',
+            'number',
+            'postal_code',
+            'city',
+            'state',
+          ],
+        },
       ],
     });
 
@@ -50,11 +54,8 @@ class ResidentController {
       email,
       mobile,
       owner_id,
-      street,
+      address_id,
       number,
-      city,
-      state,
-      postal_code,
     } = await Resident.create(req.body);
 
     return res.json({
@@ -63,11 +64,8 @@ class ResidentController {
       email,
       mobile,
       owner_id,
-      street,
+      address_id,
       number,
-      city,
-      state,
-      postal_code,
     });
   }
 

@@ -8,11 +8,7 @@ class Resident extends Model {
         name: Sequelize.STRING,
         email: Sequelize.STRING,
         mobile: Sequelize.INTEGER,
-        street: Sequelize.STRING,
         number: Sequelize.INTEGER,
-        city: Sequelize.STRING,
-        state: Sequelize.STRING,
-        postal_code: Sequelize.STRING,
         password: Sequelize.VIRTUAL,
         password_hash: Sequelize.STRING,
       },
@@ -31,6 +27,7 @@ class Resident extends Model {
 
   static associate(models) {
     this.belongsTo(models.User, { foreignKey: 'owner_id' });
+    this.belongsTo(models.Address, { foreignKey: 'address_id' });
   }
 
   checkPassword(password) {

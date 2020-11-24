@@ -19,6 +19,9 @@ import validateResidentUpdate from './app/validators/ResidentUpdate';
 import validateAppointmentStore from './app/validators/AppointmentStore';
 import validateAppointmentUpdate from './app/validators/AppointmentUpdate';
 
+import validateAddressStore from './app/validators/AddressStore';
+import validateAddressUpdate from './app/validators/AddressUpdate';
+
 import validateSessionStore from './app/validators/SessionStore';
 
 const routes = new Router();
@@ -63,7 +66,19 @@ routes.delete(
 );
 
 routes.get('/addresses/:id', adminAuthorization(true), AddressController.index);
-routes.post('/addresses', adminAuthorization(true), AddressController.store);
+routes.post(
+  '/addresses',
+  adminAuthorization(true),
+  validateAddressStore,
+  AddressController.store
+);
+
+routes.put(
+  '/addresses/:id',
+  adminAuthorization(true),
+  validateAddressUpdate,
+  AddressController.update
+);
 
 routes.get('/appointments/:id', AppointmentController.index);
 

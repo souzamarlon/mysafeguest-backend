@@ -2,6 +2,7 @@ import { isBefore, isToday, isPast } from 'date-fns';
 import { utcToZonedTime } from 'date-fns-tz';
 import Appointment from '../models/Appointment';
 import Resident from '../models/Resident';
+import Address from '../models/Address';
 
 class GuardController {
   async index(req, res) {
@@ -22,14 +23,19 @@ class GuardController {
       include: [
         {
           model: Resident,
-          attributes: [
-            'name',
-            'mobile',
-            'street',
-            'number',
-            'city',
-            'state',
-            'postal_code',
+          attributes: ['id', 'name', 'email', 'mobile', 'address_id', 'number'],
+          include: [
+            {
+              model: Address,
+              attributes: [
+                'id',
+                'street',
+                'number',
+                'postal_code',
+                'city',
+                'state',
+              ],
+            },
           ],
         },
       ],

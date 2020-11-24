@@ -28,20 +28,15 @@ module.exports = {
         onDelete: 'CASCADE',
         allowNull: false,
       },
-      street: {
-        type: Sequelize.STRING,
+      address_id: {
+        type: Sequelize.INTEGER,
+        references: { model: 'addresses', key: 'id' },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
         allowNull: false,
       },
       number: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      city: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      state: {
-        type: Sequelize.STRING,
         allowNull: false,
       },
       password_hash: {

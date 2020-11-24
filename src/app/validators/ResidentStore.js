@@ -7,10 +7,8 @@ export default async (req, res, next) => {
       email: Yup.string().email().required(),
       mobile: Yup.string().required(),
       owner_id: Yup.number().required(),
-      street: Yup.string().required(),
+      address_id: Yup.number().required(),
       number: Yup.number().required(),
-      city: Yup.string().required(),
-      state: Yup.string().required(),
       password: Yup.string().required().min(6),
     });
 
