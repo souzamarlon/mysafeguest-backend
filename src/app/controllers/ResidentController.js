@@ -12,7 +12,15 @@ class ResidentController {
       where: {
         owner_id: id,
       },
-      attributes: ['id', 'name', 'email', 'mobile', 'address_id', 'number'],
+      attributes: [
+        'id',
+        'name',
+        'email',
+        'mobile',
+        'owner_id',
+        'address_id',
+        'number',
+      ],
       include: [
         {
           model: Address,
