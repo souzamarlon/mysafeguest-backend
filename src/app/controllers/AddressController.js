@@ -62,7 +62,7 @@ class AddressController {
       },
     });
 
-    if (streetExists) {
+    if (streetExists && streetExists.owner_id !== req.userId) {
       return res.status(400).json({ error: 'This address already exists!' });
     }
 
