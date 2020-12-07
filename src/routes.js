@@ -38,6 +38,7 @@ routes.get('/guardcheckin/:id', GuardController.index);
 routes.use(authMiddleware);
 
 routes.get('/users', adminAuthorization(true), UserController.index);
+routes.post('/users', adminAuthorization(true), UserController.store);
 
 routes.get(
   '/residents/:id',
