@@ -1,17 +1,20 @@
 import { Router } from 'express';
 
+import authMiddleware from './app/middlewares/auth';
+import adminAuthorization from './app/middlewares/authorization';
+
 import AdminSessionController from './app/controllers/AdminSessionController';
 import ResidentSessionController from './app/controllers/ResidentSessionController';
 
 import UserController from './app/controllers/UserController';
-import authMiddleware from './app/middlewares/auth';
-import adminAuthorization from './app/middlewares/authorization';
 
 import ResidentController from './app/controllers/ResidentController';
 import AppointmentController from './app/controllers/AppointmentController';
 import AddressController from './app/controllers/AddressController';
 
 import GuardController from './app/controllers/GuardController';
+
+import PaymentController from './app/controllers/PaymentController';
 
 import validateResidentStore from './app/validators/ResidentStore';
 import validateResidentUpdate from './app/validators/ResidentUpdate';
@@ -34,11 +37,13 @@ routes.post(
 );
 routes.get('/guardcheckin/:id', GuardController.index);
 
+routes.post('/payments', PaymentController.store);
+routes.post('/users', UserController.store);
+
 // Admin features:
 routes.use(authMiddleware);
 
 routes.get('/users', adminAuthorization(true), UserController.index);
-routes.post('/users', adminAuthorization(true), UserController.store);
 
 routes.get(
   '/residents/:id',

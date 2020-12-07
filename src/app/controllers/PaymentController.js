@@ -6,9 +6,6 @@ class PaymentController {
   async store(req, res) {
     const { name, number, exp_month, exp_year, cvc } = req.body;
 
-    const STRIPE_PUBLISHABLE_KEY =
-      'pk_test_51HvC0VJe1Ww2Z11RBehexWJLlHB2YAO1k7b1VmNBfJg9Cnc6HabeEJtkPExMvc1Cdvw9aaNc4PVY315JF8akXbtK00jVQjx3cv';
-
     // number: '4242424242424242',
     // exp_month: 12,
     // exp_year: 2021,
