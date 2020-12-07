@@ -12,6 +12,8 @@ class UserController {
   async store(req, res) {
     const { name, email } = await User.create(req.body);
 
+    // TODO Check the email already exists.
+
     return res.json({ name, email });
   }
 }
