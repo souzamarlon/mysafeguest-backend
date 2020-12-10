@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import User from '../models/User';
 
 export default async (req, res, next) => {
   try {
@@ -15,6 +16,10 @@ export default async (req, res, next) => {
 
     return next();
   } catch (err) {
+    const userToDelete = await User.findByPk(req.body.owner_id);
+
+    await userToDelete.destroy();
+
     return res.status(400).json({
       error: err.errors,
     });

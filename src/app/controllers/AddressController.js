@@ -1,4 +1,5 @@
 import Address from '../models/Address';
+import User from '../models/User';
 
 class AddressController {
   async index(req, res) {
@@ -26,6 +27,9 @@ class AddressController {
     });
 
     if (streetExists) {
+      const userToDelete = await User.findByPk(req.body.owner_id);
+
+      await userToDelete.destroy();
       return res.status(400).json({ error: 'This address already exists!' });
     }
 
