@@ -37,8 +37,9 @@ routes.post(
 );
 routes.get('/guardcheckin/:id', GuardController.index);
 
-routes.post('/payments', PaymentController.store);
 routes.post('/users', UserController.store);
+routes.post('/payments', PaymentController.store);
+routes.post('/addresses', validateAddressStore, AddressController.store);
 
 // Admin features:
 routes.use(authMiddleware);
@@ -72,12 +73,6 @@ routes.delete(
 );
 
 routes.get('/addresses/:id', adminAuthorization(true), AddressController.index);
-routes.post(
-  '/addresses',
-  adminAuthorization(true),
-  validateAddressStore,
-  AddressController.store
-);
 
 routes.put(
   '/addresses/:id',
